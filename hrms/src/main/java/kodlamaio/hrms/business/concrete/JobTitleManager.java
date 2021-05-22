@@ -15,9 +15,9 @@ public class JobTitleManager implements JobTitleService{
 	private JobTitleDao jobTitleDao;
 	
 	@Autowired
-	public JobTitleManager(JobTitleDao jpdao) {
+	public JobTitleManager(JobTitleDao jobTitleDao) {
 		super();
-		this.jobTitleDao = jpdao;
+		this.jobTitleDao = jobTitleDao;
 	}
 	@Override
 	public List<JobTitle> getAll() {
