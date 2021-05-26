@@ -1,4 +1,4 @@
-package kodlamaio.hrms.entities.abstracts;
+package kodlamaio.hrms.core.entities.abstracts;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

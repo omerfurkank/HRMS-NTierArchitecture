@@ -7,7 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import kodlamaio.hrms.entities.abstracts.User;
+import kodlamaio.hrms.core.entities.abstracts.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ import lombok.NoArgsConstructor;
 @Table(name="candidates")
 @EqualsAndHashCode(callSuper = false)
 @PrimaryKeyJoinColumn(name="id",referencedColumnName = "id")
-public class Candidates extends User {
+public class Candidate extends User {
 
 	@Column(name="first_name")
 	private String firstName;

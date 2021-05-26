@@ -5,7 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import kodlamaio.hrms.entities.abstracts.User;
+import kodlamaio.hrms.core.entities.abstracts.User;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
