@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Table(name = "verification_codes")
 @Inheritance(strategy = InheritanceType.JOINED)
-public class VerificationCode {
+public class VerifyCode {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

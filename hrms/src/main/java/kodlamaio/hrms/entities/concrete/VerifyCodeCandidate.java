@@ -7,7 +7,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import kodlamaio.hrms.core.entities.abstracts.EmployeeConfirm;
+import kodlamaio.hrms.core.entities.abstracts.VerifyCode;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -16,11 +16,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-@Table(name = "employee_confirms_employers")
+@Table(name = "verification_codes_candidates")
 @PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
-public class EmployeeConfirmEmployer extends EmployeeConfirm {
+public class VerifyCodeCandidate extends VerifyCode {
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="employer_id",referencedColumnName = "id")
-	private Employer employer;
+	@JoinColumn(name = "candidate_id", referencedColumnName = "id")
+	private Candidate candidate;
 }
