@@ -1,6 +1,4 @@
-package kodlamaio.hrms.entities.concrete.dtos;
-
-import java.util.Date;
+package kodlamaio.hrms.entities.dtos;
 
 import kodlamaio.hrms.core.entities.abstracts.dtos.authDto;
 import lombok.Data;
@@ -10,12 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode(callSuper = false)
-public class RegisterCandidateDto extends authDto {
+public class RegisterEmployerDto extends authDto {
 
-	private String firstName;
-	private String lastName;
-	private String identityNumber;
-	private Date birthDate;
+	private String companyName;
+	private String phoneNumber;
+	private String webAdress;
 	private String passwordConfirm;
-	
 }

@@ -17,8 +17,8 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.core.utilities.verification.VerificationService;
 import kodlamaio.hrms.entities.concrete.Candidate;
 import kodlamaio.hrms.entities.concrete.Employer;
-import kodlamaio.hrms.entities.concrete.dtos.RegisterCandidateDto;
-import kodlamaio.hrms.entities.concrete.dtos.RegisterEmployerDto;
+import kodlamaio.hrms.entities.dtos.RegisterCandidateDto;
+import kodlamaio.hrms.entities.dtos.RegisterEmployerDto;
 
 public class AuthManager implements AuthService {
 
