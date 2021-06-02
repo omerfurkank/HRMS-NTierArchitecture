@@ -35,5 +35,5 @@ public class EmployeeConfirm {
 	private Employee employee;
 	
 	@Column(name = "is_confirmed")
-	private boolean isConfirmed;
+	private boolean isConfirmed=false;
 }

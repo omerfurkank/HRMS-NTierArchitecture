@@ -30,5 +30,5 @@ public class VerifyCode {
 	private String code;
 	
 	@Column(name = "is_verified")
-	private boolean isVerified;
+	private boolean isVerified=false;
 }

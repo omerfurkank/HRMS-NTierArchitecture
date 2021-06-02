@@ -2,6 +2,9 @@ package kodlamaio.hrms.business.concrete;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import kodlamaio.hrms.business.abstracts.EmployerService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.Result;
@@ -10,10 +13,12 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.EmployerDao;
 import kodlamaio.hrms.entities.concrete.Employer;
 
+@Service
 public class EmployerManager implements EmployerService {
 
 	private EmployerDao employerDao;
 
+	@Autowired
 	public EmployerManager(EmployerDao employerDao) {
 		super();
 		this.employerDao = employerDao;
@@ -31,6 +36,6 @@ public class EmployerManager implements EmployerService {
 		
 		return new SuccessDataResult<List<Employer>>(employerDao.findAll(), "listed");
 		  
-	}
+	}	
 
 }

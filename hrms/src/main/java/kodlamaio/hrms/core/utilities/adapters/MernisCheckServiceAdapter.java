@@ -2,11 +2,14 @@ package kodlamaio.hrms.core.utilities.adapters;
 
 import java.util.Date;
 
+import org.springframework.stereotype.Service;
+
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.fakeMernisService.FakeMernis;
 
+@Service
 public class MernisCheckServiceAdapter implements CheckService {
 
 	@Override

@@ -3,6 +3,8 @@ package kodlamaio.hrms.business.concrete;
 import java.util.Date;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import kodlamaio.hrms.business.abstracts.AuthService;
 import kodlamaio.hrms.business.abstracts.CandidateService;
 import kodlamaio.hrms.business.abstracts.EmployerService;
@@ -20,6 +22,7 @@ import kodlamaio.hrms.entities.concrete.Employer;
 import kodlamaio.hrms.entities.dtos.RegisterCandidateDto;
 import kodlamaio.hrms.entities.dtos.RegisterEmployerDto;
 
+@Service
 public class AuthManager implements AuthService {
 
 	private UserService userService;
