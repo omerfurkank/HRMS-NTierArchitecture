@@ -53,7 +53,6 @@ public class AuthManager implements AuthService {
 	public Result registerCandidate(RegisterCandidateDto registerCandidateDto) {
 
 		Result result= BusinessRules.run(
-				checkMissingInfoCandidate(registerCandidateDto),
 				checkPasswordConfirm(registerCandidateDto.getPassword(), registerCandidateDto.getPasswordConfirm()),
 				checkIfRealPerson(registerCandidateDto.getIdentityNumber(), registerCandidateDto.getFirstName(),registerCandidateDto.getLastName(), registerCandidateDto.getBirthDate()),
 				checkIfCandidateExistsByIDNo(registerCandidateDto.getIdentityNumber()),
@@ -75,7 +74,6 @@ public class AuthManager implements AuthService {
 	public Result registerEmployer(RegisterEmployerDto registerEmployerDto) {
 		
 		Result result = BusinessRules.run(
-				checkMissingInfoEmployer(registerEmployerDto),
 				checkPasswordConfirm(registerEmployerDto.getPassword(), registerEmployerDto.getPasswordConfirm()),
 				checkEmailDomain(registerEmployerDto.getEmail(), registerEmployerDto.getWebAdress()),
 				checkIfUserExistsByEmail(registerEmployerDto.getEmail())
@@ -117,25 +115,6 @@ public class AuthManager implements AuthService {
 		}
 		return new ErrorResult("this user already exists");
 	}
-	
-	
-	private Result checkMissingInfoCandidate(RegisterCandidateDto registerCandidateDto) {
-		if (registerCandidateDto.getFirstName()==null || registerCandidateDto.getLastName()==null || registerCandidateDto.getEmail()==null || 
-		    registerCandidateDto.getBirthDate()==null || registerCandidateDto.getPassword()==null || registerCandidateDto.getPasswordConfirm()==null ||
-		    registerCandidateDto.getIdentityNumber()==null) {
-			return new ErrorResult("please fill the all fields");
-		}
-		return new SuccessResult();
-	}
-	
-	private Result checkMissingInfoEmployer(RegisterEmployerDto registerEmployerDto) {
-		if (registerEmployerDto.getCompanyName()==null || registerEmployerDto.getPhoneNumber()==null || registerEmployerDto.getEmail()==null ||
-			registerEmployerDto.getWebAdress()==null || registerEmployerDto.getPassword()==null || registerEmployerDto.getPasswordConfirm()==null ) {
-			return new ErrorResult("please fill the all fields");
-		}
-		return new SuccessResult();
-	}
-	
 	
 	private Result checkEmailDomain(String email,String website) {
 		String[] emailSplit = email.split("@");

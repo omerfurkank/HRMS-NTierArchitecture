@@ -11,6 +11,8 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import kodlamaio.hrms.entities.concrete.Employee;
 import lombok.AllArgsConstructor;
@@ -30,10 +32,14 @@ public class EmployeeConfirm {
 	@Column(name = "id")
 	private int id;
 	
+	@NotNull
+	@NotBlank
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "employee_id",referencedColumnName = "id")
 	private Employee employee;
 	
+	@NotNull
+	@NotBlank
 	@Column(name = "is_confirmed")
 	private boolean isConfirmed=false;
 }
