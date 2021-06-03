@@ -1,13 +1,20 @@
 package kodlamaio.hrms.entities.concrete;
 
 import java.time.LocalDate;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import kodlamaio.hrms.core.entities.abstracts.User;
 import lombok.Data;
@@ -44,4 +51,30 @@ public class Candidate extends User {
 	
 	@Column(name="description")
 	private String description;
+	
+	@JsonIgnore
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "cv_image_id", referencedColumnName = "id")
+	private CvImage cvImage;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<CvEducation> cvEducations;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<CvExperience> cvExperiences;
+
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<CvSkills> cvSkills;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<CvLanguage> cvLanguages;
+	
+	@JsonIgnore
+	@OneToMany(mappedBy = "candidate")
+	private List<CvLink> cvLinks;
+	
 }

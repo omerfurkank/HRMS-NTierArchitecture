@@ -1,13 +1,8 @@
 package kodlamaio.hrms.entities.concrete;
-
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import kodlamaio.hrms.core.entities.abstracts.VerifyCode;
 import lombok.Data;
@@ -22,7 +17,6 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
 public class VerifyCodeCandidate extends VerifyCode {
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "candidate_id", referencedColumnName = "id")
-	private Candidate candidate;
+	@Column(name = "candidate_id")
+	private int candidateId;
 }

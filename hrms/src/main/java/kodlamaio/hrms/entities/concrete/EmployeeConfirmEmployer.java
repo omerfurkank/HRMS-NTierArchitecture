@@ -1,9 +1,7 @@
 package kodlamaio.hrms.entities.concrete;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -22,7 +20,8 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
 public class EmployeeConfirmEmployer extends EmployeeConfirm {
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="employer_id",referencedColumnName = "id")
-	private Employer employer;
+	@NotNull
+	@NotBlank
+	@Column(name="employee_confirms_employers")
+	private int employeeId;
 }
