@@ -32,8 +32,6 @@ public class EmployeeConfirm {
 	@Column(name = "id")
 	private int id;
 	
-	@NotNull
-	@NotBlank
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "employee_id",referencedColumnName = "id")
 	private Employee employee;

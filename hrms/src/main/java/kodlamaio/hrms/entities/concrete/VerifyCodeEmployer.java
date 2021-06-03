@@ -22,8 +22,6 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
 public class VerifyCodeEmployer extends VerifyCode {
 
-	@NotNull
-	@NotBlank
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "candidate_id", referencedColumnName = "id")
 	private Employer employer;

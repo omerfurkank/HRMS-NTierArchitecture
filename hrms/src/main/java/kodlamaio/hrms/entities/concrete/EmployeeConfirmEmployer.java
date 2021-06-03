@@ -22,8 +22,6 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
 public class EmployeeConfirmEmployer extends EmployeeConfirm {
 
-	@NotNull
-	@NotBlank
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="employer_id",referencedColumnName = "id")
 	private Employer employer;

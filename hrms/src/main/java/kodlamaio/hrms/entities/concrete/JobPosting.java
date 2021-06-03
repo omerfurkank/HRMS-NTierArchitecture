@@ -61,20 +61,14 @@ public class JobPosting {
 	@Column(name = "is_active")
 	private boolean isActive=true;
 	
-	@NotNull
-	@NotBlank
 	@ManyToOne
 	@JoinColumn(name = "employer_id")
 	private Employer employer;
-	
-	@NotNull
-	@NotBlank
+
 	@ManyToOne
 	@JoinColumn(name = "job_title_id")
 	private JobTitle jobTitle;
-	
-	@NotNull
-	@NotBlank
+
 	@ManyToOne
 	@JoinColumn(name = "city_id")
 	private City city;

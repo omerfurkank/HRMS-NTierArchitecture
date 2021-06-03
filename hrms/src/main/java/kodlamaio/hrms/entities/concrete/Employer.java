@@ -38,8 +38,6 @@ public class Employer extends User {
 	@Column(name="phone_number")
 	private String phoneNumber;
 
-	@NotNull
-	@NotBlank
 	@OneToMany(mappedBy = "employer")
     private List<JobPosting> jobPostings;
 }

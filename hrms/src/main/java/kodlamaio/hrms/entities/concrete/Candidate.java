@@ -41,4 +41,7 @@ public class Candidate extends User {
 	@NotBlank
 	@Column(name="birth_date")
 	private LocalDate birhDate;
+	
+	@Column(name="description")
+	private String description;
 }
