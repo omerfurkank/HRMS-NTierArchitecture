@@ -8,5 +8,7 @@ import kodlamaio.hrms.entities.concrete.CvEducation;
 
 public interface CvEducationDao extends JpaRepository<CvEducation, Integer>{
 
+	List<CvEducation> getAllByCandidate_Id(int candidateId);
+	
 	List<CvEducation> getAllByCandidate_idOrderByGraduationYear(int candidateId);
 }
