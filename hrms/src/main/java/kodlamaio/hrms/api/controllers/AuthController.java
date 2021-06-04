@@ -10,6 +10,8 @@ import kodlamaio.hrms.business.abstracts.AuthService;
 import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.entities.dtos.RegisterCandidateDto;
 import kodlamaio.hrms.entities.dtos.RegisterEmployerDto;
+import kodlamaio.hrms.entities.dtos.VerifyCandidateDto;
+import kodlamaio.hrms.entities.dtos.VerifyEmployerDto;
 
 @RestController
 @RequestMapping("/api/auth")
@@ -31,6 +33,16 @@ public class AuthController {
 	@PostMapping("/registerEmployer")
 	public Result registerEmployer(@RequestBody RegisterEmployerDto registerEmployerDto) {
 		return this.authService.registerEmployer(registerEmployerDto);
+	}
+	
+	@PostMapping("/verifyCandidate")
+	public Result verifyCandidate(@RequestBody VerifyCandidateDto verifyCandidateDto) {
+		return this.authService.verifyCandidate(verifyCandidateDto);
+	}
+	
+	@PostMapping("/verifyEmployer")
+	public Result verifyEmployer(@RequestBody VerifyEmployerDto verifyEmployerDto) {
+		return this.authService.verifyEmployer(verifyEmployerDto);
 	}
 
 }

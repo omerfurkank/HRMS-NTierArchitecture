@@ -47,7 +47,7 @@ public class Candidate extends User {
 	@NotNull
 	@NotBlank
 	@Column(name="birth_date")
-	private LocalDate birhDate;
+	private LocalDate birthDate;
 	
 	@Column(name="description")
 	private String description;

@@ -6,4 +6,5 @@ import kodlamaio.hrms.entities.concrete.VerifyCodeCandidate;
 
 public interface VerifyCodeCandidateDao extends JpaRepository<VerifyCodeCandidate, Integer> {
 
+	VerifyCodeCandidate getByCandidateIdEquals(int candidateId);
 }

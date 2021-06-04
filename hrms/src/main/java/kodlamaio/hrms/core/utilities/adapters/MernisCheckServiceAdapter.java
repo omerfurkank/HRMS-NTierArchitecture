@@ -1,6 +1,6 @@
 package kodlamaio.hrms.core.utilities.adapters;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import org.springframework.stereotype.Service;
 
@@ -13,7 +13,7 @@ import kodlamaio.hrms.fakeMernisService.FakeMernis;
 public class MernisCheckServiceAdapter implements CheckService {
 
 	@Override
-	public Result checkIfRealPerson(String tcno,String firsName,String lastName,Date birthDate) {
+	public Result checkIfRealPerson(String tcno,String firsName,String lastName,LocalDate birthDate) {
 		FakeMernis fakeMernis=new FakeMernis();
 		if(fakeMernis.checkMernis(tcno, firsName, lastName, birthDate)) {
 			return new SuccessResult();

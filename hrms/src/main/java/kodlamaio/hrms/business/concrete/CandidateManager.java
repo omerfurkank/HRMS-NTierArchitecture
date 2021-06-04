@@ -55,6 +55,11 @@ public class CandidateManager implements CandidateService {
 		
 		return new SuccessDataResult<List<Candidate>>(candidateDao.findAll(), "listed");
 	}
+	
+	@Override
+	public DataResult<Candidate> getById(int id) {
+		return new SuccessDataResult<Candidate>(this.candidateDao.getOne(id));
+	}
 
 	@Override
 	public DataResult<Candidate> getByIdentityNumber(String identityNumber) {

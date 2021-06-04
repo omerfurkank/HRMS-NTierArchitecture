@@ -6,4 +6,5 @@ import kodlamaio.hrms.entities.concrete.VerifyCodeEmployer;
 
 public interface VerifyCodeEmployerDao extends JpaRepository<VerifyCodeEmployer, Integer>{
 
+	VerifyCodeEmployer getByEmployerIdEquals(int id);
 }

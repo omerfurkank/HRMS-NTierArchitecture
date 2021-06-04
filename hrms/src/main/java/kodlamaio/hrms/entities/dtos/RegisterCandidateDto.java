@@ -1,6 +1,6 @@
 package kodlamaio.hrms.entities.dtos;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import kodlamaio.hrms.core.entities.abstracts.dtos.authDto;
 import lombok.Data;
@@ -15,7 +15,7 @@ public class RegisterCandidateDto extends authDto {
 	private String firstName;
 	private String lastName;
 	private String identityNumber;
-	private Date birthDate;
+	private LocalDate birthDate;
 	private String passwordConfirm;
 	
 }

@@ -1,5 +1,7 @@
 package kodlamaio.hrms.core.entities.abstracts;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,14 +13,12 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @Entity
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "verification_codes")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class VerifyCode {
@@ -36,5 +36,15 @@ public class VerifyCode {
 	@NotNull
 	@NotBlank
 	@Column(name = "is_verified")
-	private boolean isVerified=false;
+	private boolean isVerified;
+	
+	@Column(name = "verified_date")
+	private LocalDate verifiedDate;
+
+	public VerifyCode(@NotNull @NotBlank String code, @NotNull @NotBlank boolean isVerified) {
+		super();
+		this.code = code;
+		this.isVerified = isVerified;
+	}
+	
 }

@@ -4,6 +4,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import kodlamaio.hrms.core.entities.abstracts.VerifyCode;
 import lombok.Data;
@@ -18,6 +20,13 @@ import lombok.NoArgsConstructor;
 @PrimaryKeyJoinColumn(name = "id",referencedColumnName = "id")
 public class VerifyCodeEmployer extends VerifyCode {
 
+	@NotNull
+	@NotBlank
 	@Column(name = "employer_id")
 	private int employerId;
+
+	public VerifyCodeEmployer(@NotNull @NotBlank String code, @NotNull @NotBlank boolean isVerified, @NotNull @NotBlank int employerId) {
+		super(code, isVerified);
+		this.employerId = employerId;
+	}
 }

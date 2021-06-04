@@ -43,7 +43,13 @@ public class CandidatesController {
 		return this.candidateService.getByIdentityNumber(identityNumber);
 	}
 	
+	@GetMapping("/getCvById")
 	public  DataResult<CandidateCvDto> getCvById(@RequestParam int id){
 		return this.candidateService.getCvById(id);
+	}
+	
+	@GetMapping("/getById")
+	public DataResult<Candidate> getById(@RequestParam int id){
+		return this.candidateService.getById(id);
 	}
 }

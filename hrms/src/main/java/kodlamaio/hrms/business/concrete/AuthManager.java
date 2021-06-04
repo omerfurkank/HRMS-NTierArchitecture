@@ -1,6 +1,6 @@
 package kodlamaio.hrms.business.concrete;
 
-import java.util.Date;
+import java.time.LocalDate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +19,12 @@ import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.core.utilities.verification.VerificationService;
 import kodlamaio.hrms.entities.concrete.Candidate;
 import kodlamaio.hrms.entities.concrete.Employer;
+import kodlamaio.hrms.entities.concrete.VerifyCodeCandidate;
+import kodlamaio.hrms.entities.concrete.VerifyCodeEmployer;
 import kodlamaio.hrms.entities.dtos.RegisterCandidateDto;
 import kodlamaio.hrms.entities.dtos.RegisterEmployerDto;
+import kodlamaio.hrms.entities.dtos.VerifyCandidateDto;
+import kodlamaio.hrms.entities.dtos.VerifyEmployerDto;
 
 @Service
 public class AuthManager implements AuthService {
@@ -63,11 +67,13 @@ public class AuthManager implements AuthService {
 		}
 		
 		Candidate registeredCandidate= modelMapper.map(registerCandidateDto, Candidate.class);
-		verificationService.generateEmailCode();
+		String code = verificationService.generateEmailCode();	
 		verificationService.sendEmailLink(registeredCandidate.getEmail());
 		
-		return this.candidateService.add(registeredCandidate);
+		this.candidateService.add(registeredCandidate);
+		this.verifyCodeCandidateService.add(new VerifyCodeCandidate(code,false,registeredCandidate.getId()));
 		
+		return new SuccessResult("Registration successful! Please check email to verify your account.");
 	}
 
 	@Override
@@ -83,14 +89,43 @@ public class AuthManager implements AuthService {
 		}
 		
 		Employer registeredEmployer=modelMapper.map(registerEmployerDto, Employer.class);
-		verificationService.generateEmailCode();
+		String code = verificationService.generateEmailCode();	
 		verificationService.sendEmailLink(registeredEmployer.getEmail());
 		
-		return this.employerService.add(registeredEmployer);
+		this.employerService.add(registeredEmployer);
+		this.verifyCodeEmployerService.add(new VerifyCodeEmployer(code, false, registeredEmployer.getId()));
+		
+		return new SuccessResult("Registration successful! Please check email to verify your account.");
+	}
+	
+	@Override
+	public Result verifyCandidate(VerifyCandidateDto verifyCandidateDto) {
+		
+		VerifyCodeCandidate registeredCode =this.verifyCodeCandidateService.getByCandidateId(verifyCandidateDto.getCandidateId()).getData();
+		if (registeredCode.getCode().equals(verifyCandidateDto.getCode())) {
+			registeredCode.setVerified(true);
+			registeredCode.setVerifiedDate(LocalDate.now());
+			this.verifyCodeCandidateService.update(registeredCode);
+			return new SuccessResult("Account verified!");
+		}
+		return new ErrorResult("Codes are not the same!");
+	}
+	
+	@Override
+	public Result verifyEmployer(VerifyEmployerDto verifyEmployerDto) {
+		
+		VerifyCodeEmployer registeredCode=this.verifyCodeEmployerService.getByEmployerId(verifyEmployerDto.getEmployerId()).getData();
+		if (registeredCode.getCode().equals(verifyEmployerDto.getCode())) {
+			registeredCode.setVerified(true);
+			registeredCode.setVerifiedDate(LocalDate.now());
+			this.verifyCodeEmployerService.update(registeredCode);
+			return new SuccessResult("Account verified!");
+		}
+		return new ErrorResult("Codes are not the same!");
 	}
 	
 	
-	private Result checkIfRealPerson(String tcno,String firsName,String lastName,Date birthDate) {
+	private Result checkIfRealPerson(String tcno,String firsName,String lastName,LocalDate birthDate) {
 		 return this.checkService.checkIfRealPerson(tcno, firsName, lastName, birthDate);
 		
 	}
@@ -123,6 +158,8 @@ public class AuthManager implements AuthService {
 		}
 		return new ErrorResult("email do nat match website domain");
 	}
+
+	
 	
 	
 	

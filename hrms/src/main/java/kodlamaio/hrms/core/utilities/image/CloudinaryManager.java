@@ -3,6 +3,7 @@ package kodlamaio.hrms.core.utilities.image;
 import java.io.IOException;
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.cloudinary.Cloudinary;
@@ -12,8 +13,9 @@ import kodlamaio.hrms.core.utilities.results.DataResult;
 import kodlamaio.hrms.core.utilities.results.ErrorDataResult;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
 
+@Service
 public class CloudinaryManager implements ImageService {
-
+	
 	private Cloudinary cloudinary;
 	@Override
 	public DataResult<Map<String, String>> add(MultipartFile multipartFile) {
