@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import com.cloudinary.Cloudinary;
+import com.cloudinary.utils.ObjectUtils;
+
 import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
@@ -29,6 +32,14 @@ public class HrmsApplication {
 	@Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();
+    }
+	
+	@Bean
+    public Cloudinary cloudinaryService(){
+        return new Cloudinary(ObjectUtils.asMap(
+                "cloud_name", "dqwan4kq8",
+                "api_key", "574759389525456",
+                "api_secret", "ZR7flIhG1u8FaD9UdqmbluIav1E"));
     }
 
 }
