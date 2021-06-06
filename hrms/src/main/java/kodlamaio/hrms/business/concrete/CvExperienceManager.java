@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import kodlamaio.hrms.business.abstracts.CvExperienceService;
 import kodlamaio.hrms.core.utilities.results.DataResult;
+import kodlamaio.hrms.core.utilities.results.Result;
 import kodlamaio.hrms.core.utilities.results.SuccessDataResult;
+import kodlamaio.hrms.core.utilities.results.SuccessResult;
 import kodlamaio.hrms.dataAccess.abstracts.CvExperienceDao;
 import kodlamaio.hrms.entities.concrete.CvExperience;
 
@@ -25,6 +27,11 @@ public class CvExperienceManager implements CvExperienceService {
 	@Override
 	public DataResult<List<CvExperience>> getAllByCandidate_IdOrderByLeaveYear(int candidateId) {
 		return new SuccessDataResult<List<CvExperience>>(this.cvExperienceDao.getAllByCandidate_IdOrderByLeaveYear(candidateId));
+	}
+	@Override
+	public Result add(CvExperience cvExperience) {
+		this.cvExperienceDao.save(cvExperience);
+		return new SuccessResult("added");
 	}
 
 	

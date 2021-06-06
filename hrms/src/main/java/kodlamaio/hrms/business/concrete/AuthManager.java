@@ -11,6 +11,7 @@ import kodlamaio.hrms.business.abstracts.EmployerService;
 import kodlamaio.hrms.business.abstracts.UserService;
 import kodlamaio.hrms.business.abstracts.VerifyCodeCandidateService;
 import kodlamaio.hrms.business.abstracts.VerifyCodeEmployerService;
+import kodlamaio.hrms.core.entities.abstracts.User;
 import kodlamaio.hrms.core.utilities.adapters.CheckService;
 import kodlamaio.hrms.core.utilities.business.BusinessRules;
 import kodlamaio.hrms.core.utilities.results.ErrorResult;
@@ -101,11 +102,12 @@ public class AuthManager implements AuthService {
 	@Override
 	public Result verifyCandidate(VerifyCandidateDto verifyCandidateDto) {
 		
-		VerifyCodeCandidate registeredCode =this.verifyCodeCandidateService.getByCandidateId(verifyCandidateDto.getCandidateId()).getData();
-		if (registeredCode.getCode().equals(verifyCandidateDto.getCode())) {
-			registeredCode.setVerified(true);
-			registeredCode.setVerifiedDate(LocalDate.now());
-			this.verifyCodeCandidateService.update(registeredCode);
+		User verifiedCandidate = this.userService.getByEmail(verifyCandidateDto.getEmail()).getData();
+		VerifyCodeCandidate verifiedCode =this.verifyCodeCandidateService.getByCandidateId(verifiedCandidate.getId()).getData();
+		if (verifiedCode.getCode().equals(verifyCandidateDto.getCode())) {
+			verifiedCode.setVerified(true);
+			verifiedCode.setVerifiedDate(LocalDate.now());
+			this.verifyCodeCandidateService.update(verifiedCode);
 			return new SuccessResult("Account verified!");
 		}
 		return new ErrorResult("Codes are not the same!");
@@ -114,11 +116,12 @@ public class AuthManager implements AuthService {
 	@Override
 	public Result verifyEmployer(VerifyEmployerDto verifyEmployerDto) {
 		
-		VerifyCodeEmployer registeredCode=this.verifyCodeEmployerService.getByEmployerId(verifyEmployerDto.getEmployerId()).getData();
-		if (registeredCode.getCode().equals(verifyEmployerDto.getCode())) {
-			registeredCode.setVerified(true);
-			registeredCode.setVerifiedDate(LocalDate.now());
-			this.verifyCodeEmployerService.update(registeredCode);
+		User verifiedEmployer = this.userService.getByEmail(verifyEmployerDto.getEmail()).getData();
+		VerifyCodeEmployer verifiedCode=this.verifyCodeEmployerService.getByEmployerId(verifiedEmployer.getId()).getData();
+		if (verifiedCode.getCode().equals(verifyEmployerDto.getCode())) {
+			verifiedCode.setVerified(true);
+			verifiedCode.setVerifiedDate(LocalDate.now());
+			this.verifyCodeEmployerService.update(verifiedCode);
 			return new SuccessResult("Account verified!");
 		}
 		return new ErrorResult("Codes are not the same!");

@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -27,6 +28,7 @@ public class CvImage {
 	@Column(name = "url")
     private String url;
 	
-	@OneToOne(mappedBy = "cvImage")
+	@OneToOne
+	@JoinColumn(name ="candidate_id")
 	private Candidate candidate;
 }

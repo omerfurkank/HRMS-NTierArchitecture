@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class VerifyEmployerDto {
 
-	private int EmployerId;
+	private String email;
 	private String code;
 }

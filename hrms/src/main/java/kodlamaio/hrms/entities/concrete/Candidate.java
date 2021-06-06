@@ -53,8 +53,7 @@ public class Candidate extends User {
 	private String description;
 	
 	@JsonIgnore
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "cv_image_id", referencedColumnName = "id")
+	@OneToOne(mappedBy = "candidate")
 	private CvImage cvImage;
 	
 	@JsonIgnore

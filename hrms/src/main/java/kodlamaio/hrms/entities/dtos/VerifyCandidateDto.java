@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class VerifyCandidateDto {
 
-	private int candidateId;
+	private String email;
 	private String code;
 }
